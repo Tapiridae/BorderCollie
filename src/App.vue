@@ -1,13 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme="theme">
+    <sidebar></sidebar>
+    <n-global-style />
+  </n-config-provider>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import { NConfigProvider, zhCN, dateZhCN, darkTheme } from 'naive-ui';
+
+import { Sidebar } from './components';
 
 export default defineComponent({
   name: 'App',
-  components: {},
+  components: { NConfigProvider, Sidebar },
+  setup() {
+    return {
+      zhCN,
+      dateZhCN,
+      darkTheme,
+      theme: ref(darkTheme),
+    };
+  },
 });
 </script>
 
