@@ -1,3 +1,3 @@
-import Sidebar from './sidebar.vue';
+import Layout from './layout.vue';
 
-export { Sidebar };
+export { Layout };

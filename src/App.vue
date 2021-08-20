@@ -1,6 +1,6 @@
 <template>
   <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme="theme">
-    <sidebar></sidebar>
+    <layout></layout>
     <n-global-style />
   </n-config-provider>
 </template>
@@ -9,17 +9,17 @@
 import { defineComponent, ref } from 'vue';
 import { NConfigProvider, zhCN, dateZhCN, darkTheme } from 'naive-ui';
 
-import { Sidebar } from './components';
+import { Layout } from './components';
 
 export default defineComponent({
   name: 'App',
-  components: { NConfigProvider, Sidebar },
+  components: { NConfigProvider, Layout },
   setup() {
     return {
       zhCN,
       dateZhCN,
       darkTheme,
-      theme: ref(darkTheme),
+      theme: ref(null),
     };
   },
 });
