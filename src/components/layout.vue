@@ -1,6 +1,14 @@
 <template>
   <n-layout class="layout-container">
-    <n-layout-header class="layout-header" bordered>Header</n-layout-header>
+    <n-layout-header class="layout-header" bordered>
+      Header
+      <div class="switch-mode">
+        <Icon>
+          <DarkModeRound v-if="{ mode }" @click="handleToggleDarkMode" />
+          <LightModeOutlined v-else @click="handleToggleLightMode" />
+        </Icon>
+      </div>
+    </n-layout-header>
     <n-layout class="layout-side" position="absolute" has-sider>
       <n-layout-sider
         content-style="padding: 24px;"
@@ -20,12 +28,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import { Icon } from '@vicons/utils';
+import { DarkModeRound, LightModeOutlined } from '@vicons/material';
 
 export default defineComponent({
   name: 'sidebar',
-  setup() {
-    console.log(`this is fuckin sidebar`);
+  components: { Icon, DarkModeRound, LightModeOutlined },
+  props: {
+    mode: Boolean,
+  },
+  setup(props, ctx) {
+    // 深色模式
+    const handleToggleDarkMode = () => {
+      console.log(`222`);
+      ctx.emit('onToggleMode', true);
+    };
+
+    // 明亮模式
+    const handleToggleLightMode = () => {
+      console.log(123);
+      ctx.emit('onToggleMode', false);
+    };
+
+    return {
+      handleToggleDarkMode,
+      handleToggleLightMode,
+    };
   },
 });
 </script>
@@ -37,6 +66,17 @@ export default defineComponent({
   .layout-header {
     height: 64px;
     padding: 24px;
+
+    .switch-mode {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      font-size: 45px;
+
+      svg :hover {
+        cursor: pointer;
+      }
+    }
   }
 
   .layout-side {
