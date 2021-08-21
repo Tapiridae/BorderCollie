@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { NConfigProvider, zhCN, dateZhCN, darkTheme } from 'naive-ui';
 
 import { Layout } from './components';
@@ -26,7 +26,6 @@ export default defineComponent({
       else theme.value = null;
     };
 
-    console.log(themeSign.value)
       
     return {
       zhCN,

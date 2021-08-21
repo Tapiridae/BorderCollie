@@ -70,7 +70,7 @@ export default defineComponent({
       font-size: 24px;
       line-height: 64px;
 
-      svg :hover {
+      :hover {
         cursor: pointer;
       }
     }
