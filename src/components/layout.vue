@@ -4,8 +4,8 @@
       Header
       <div class="switch-mode">
         <Icon>
-          <DarkModeRound v-if="{ mode }" @click="handleToggleDarkMode" />
-          <LightModeOutlined v-else @click="handleToggleLightMode" />
+          <DarkModeRound v-show="!mode" @click="handleToggleDarkMode" />
+          <LightModeOutlined v-show="mode" @click="handleToggleLightMode" />
         </Icon>
       </div>
     </n-layout-header>
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { Icon } from '@vicons/utils';
 import { DarkModeRound, LightModeOutlined } from '@vicons/material';
 
@@ -40,16 +40,12 @@ export default defineComponent({
   },
   setup(props, ctx) {
     // 深色模式
-    const handleToggleDarkMode = () => {
-      console.log(`222`);
+    const handleToggleDarkMode = () => 
       ctx.emit('onToggleMode', true);
-    };
 
     // 明亮模式
-    const handleToggleLightMode = () => {
-      console.log(123);
+    const handleToggleLightMode = () => 
       ctx.emit('onToggleMode', false);
-    };
 
     return {
       handleToggleDarkMode,
@@ -71,7 +67,8 @@ export default defineComponent({
       position: absolute;
       top: 0;
       right: 20px;
-      font-size: 45px;
+      font-size: 24px;
+      line-height: 64px;
 
       svg :hover {
         cursor: pointer;

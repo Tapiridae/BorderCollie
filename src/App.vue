@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref, watch } from 'vue';
 import { NConfigProvider, zhCN, dateZhCN, darkTheme } from 'naive-ui';
 
 import { Layout } from './components';
@@ -21,21 +21,19 @@ export default defineComponent({
     const themeSign = ref<boolean>(false);
     // 切换主题
     const onToggleMode = (mode: boolean) => {
-      themeSign.value = !mode;
+      themeSign.value = mode;
       if (mode) theme.value = darkTheme;
       else theme.value = null;
     };
 
-    watch(themeSign, (state, prevState) => {
-      console.log(state, prevState);
-    });
-
+    console.log(themeSign.value)
+      
     return {
       zhCN,
       dateZhCN,
       darkTheme,
-      theme: theme.value,
-      themeSign: themeSign.value,
+      theme,
+      themeSign,
       onToggleMode,
     };
   },
