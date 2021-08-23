@@ -5,12 +5,22 @@ import {
   Router,
 } from 'vue-router';
 
-const routes = [
-  { path: '/', name: 'Home', component: null },
-  // { path: '/login', name: 'Login',component: () => import('Pages') }
+interface IRoutes {
+  path: string;
+  name: string;
+  component: RouteComponent;
+}
+
+const routes: Array<IRoutes> = [
+  { path: '/', name: 'Home', component: import('@/App.vue') },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/pages/Login.vue'),
+  },
 ];
 
-const router = createRouter({
+const router: Router = createRouter({
   history: createWebHashHistory(),
   routes,
 });

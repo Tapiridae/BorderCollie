@@ -6,5 +6,6 @@ import 'vfonts/Lato.css';
 import 'vfonts/FiraCode.css';
 
 import App from './App.vue';
+import Router from './router';
 
-createApp(App).use(naive).mount('#app');
+createApp(App).use(Router).use(naive).mount('#app');
