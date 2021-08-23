@@ -9,7 +9,7 @@
 import { defineComponent, ref } from 'vue';
 import { NConfigProvider, zhCN, dateZhCN, darkTheme } from 'naive-ui';
 
-import { Layout } from './components';
+import { Layout } from '@/components';
 
 export default defineComponent({
   name: 'App',
@@ -26,7 +26,6 @@ export default defineComponent({
       else theme.value = null;
     };
 
-      
     return {
       zhCN,
       dateZhCN,

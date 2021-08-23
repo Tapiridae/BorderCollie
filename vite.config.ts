@@ -5,14 +5,7 @@ import { resolve } from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
-    alias: {
-      '@': resolve('src'),
-      Assets: resolve('src/assets'),
-      Components: resolve('src/components'),
-      Utils: resolve('src/utils'),
-      Pages: resolve('src/pages'),
-      Type: resolve('src/types'),
-    },
+    alias: [{ find: '@', replacement: resolve('./src') }],
   },
   plugins: [vue()],
 });

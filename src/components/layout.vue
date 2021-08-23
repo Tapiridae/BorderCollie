@@ -11,6 +11,10 @@
     </n-layout-header>
     <n-layout class="layout-side" position="absolute" has-sider>
       <n-layout-sider
+        collapse-mode="width"
+        :collapsed-width="120"
+        :width="240"
+        show-trigger="arrow-circle"
         content-style="padding: 24px;"
         :native-scrollbar="false"
         bordered
@@ -40,12 +44,10 @@ export default defineComponent({
   },
   setup(props, ctx) {
     // 深色模式
-    const handleToggleDarkMode = () => 
-      ctx.emit('onToggleMode', true);
+    const handleToggleDarkMode = () => ctx.emit('onToggleMode', true);
 
     // 明亮模式
-    const handleToggleLightMode = () => 
-      ctx.emit('onToggleMode', false);
+    const handleToggleLightMode = () => ctx.emit('onToggleMode', false);
 
     return {
       handleToggleDarkMode,
