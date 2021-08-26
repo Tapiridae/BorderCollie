@@ -1,35 +1,18 @@
-<template>
-  <n-layout class="layout-container"
-    ><n-layout-header class="layout-header" bordered
-      >Header
-      <div class="switch-mode">
-        <Icon
-          ><DarkModeRound
-            v-show="!mode"
-            @click="handleToggleDarkMode"
-          ></DarkModeRound
-          ><LightModeOutlined
-            v-show="mode"
-            @click="handleToggleLightMode"
-          ></LightModeOutlined
-        ></Icon></div></n-layout-header
-    ><n-layout class="layout-side" position="absolute" has-sider
-      ><n-layout-sider
-        collapse-mode="width"
-        :collapsed-width="120"
-        :width="240"
-        show-trigger="arrow-circle"
-        content-style="padding: 24px;"
-        :native-scrollbar="false"
-        bordered
-        ><n-h2>Sidebar</n-h2></n-layout-sider
-      ><n-layout content-style="padding: 24px;" :native-scrollbar="false"
-        ><n-h2>Content</n-h2></n-layout
-      ></n-layout
-    ><n-layout-footer class="layout-footer" position="absolute" bordered
-      >Footer</n-layout-footer
-    ></n-layout
-  >
+<template lang="pug">
+n-layout.layout-container
+  n-layout-header.layout-header(bordered)
+    | Header
+    .switch-mode
+      Icon
+        DarkModeRound(v-show="!mode" @click="handleToggleDarkMode")
+        LightModeOutlined(v-show="mode" @click="handleToggleLightMode")
+  n-layout.layout-side(position="absolute" has-sider)
+    n-layout-sider(collapse-mode="width" :collapsed-width="120" :width="240" show-trigger="arrow-circle" content-style="padding: 24px;" :native-scrollbar="false" bordered)
+      n-h2 Sidebar
+    n-layout(content-style="padding: 24px;" :native-scrollbar="false")
+      n-h2 Content
+  n-layout-footer.layout-footer(position="absolute" bordered)
+    | Footer
 </template>
 
 <script lang="ts">
