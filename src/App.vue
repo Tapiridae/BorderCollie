@@ -1,7 +1,8 @@
-<template lang="pug">
-n-config-provider(:locale="zhCN" :date-locale="dateZhCN" :theme="theme")
-  layout(@onToggleMode="onToggleMode" :mode="themeSign")
-  n-global-style
+<template>
+  <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme="theme">
+    <layout @onToggleMode="onToggleMode" :mode="themeSign" />
+    <n-global-style />
+  </n-config-provider>
 </template>
 
 <script lang="ts">

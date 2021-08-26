@@ -1,5 +1,5 @@
-<template lang="pug">
-div This is Fuckin Login
+<template>
+  <div>This is Fuckin Login</div>
 </template>
 
 <script lang="ts">
