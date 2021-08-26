@@ -24,6 +24,7 @@
       </n-layout-sider>
       <n-layout content-style="padding: 24px;" :native-scrollbar="false">
         <n-h2>Content</n-h2>
+        <slot name="title" :mode="mode"></slot>
       </n-layout>
     </n-layout>
     <n-layout-footer class="layout-footer" position="absolute" bordered>
