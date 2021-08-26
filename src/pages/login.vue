@@ -1,14 +1,15 @@
-<template>
-  <div>This is Fuckin Login</div>
+<template lang="pug">
+div This is Fuckin Login
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-
 export default defineComponent({
   name: 'Login',
-  setup() {},
 });
+</script>
+
+<script lang="ts" setup>
+import { defineComponent } from 'vue';
 </script>
 
 <style lang="less" scoped></style>
