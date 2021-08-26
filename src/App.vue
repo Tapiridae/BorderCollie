@@ -12,9 +12,21 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, onMounted, onUnmounted, onUpdated, ref } from 'vue';
 import { NConfigProvider, zhCN, dateZhCN, darkTheme } from 'naive-ui';
 import { Layout } from '@/components';
+
+onMounted(() => {
+  console.log(`onMounted`);
+});
+
+onUpdated(() => {
+  console.log('onUpdated');
+});
+
+onUnmounted(() => {
+  console.log('onUnmounted');
+});
 
 // 主题
 const theme = ref<object | null>(null);
