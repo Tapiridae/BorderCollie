@@ -12,12 +12,12 @@ interface IRoutes {
 }
 
 const routes: Array<IRoutes> = [
-  { path: '/', name: 'Home', component: import('@/pages/Home.vue') },
   {
     path: '/login',
     name: 'Login',
     component: () => import('@/pages/Login.vue'),
   },
+  { path: '/home', name: 'Home', component: import('@/pages/Home.vue') },
 ];
 
 const router: Router = createRouter({

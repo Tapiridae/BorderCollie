@@ -1,6 +1,8 @@
 <template>
   <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme="theme">
-    <router-view />
+    <n-message-provider>
+      <router-view />
+    </n-message-provider>
     <n-global-style />
   </n-config-provider>
 </template>
