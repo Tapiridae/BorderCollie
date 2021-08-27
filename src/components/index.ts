@@ -1,3 +1,3 @@
-import Layout from './layout.vue';
+import Layout from './Layout.vue';
 
 export { Layout };
