@@ -1,10 +1,6 @@
 <template>
   <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme="theme">
-    <layout @onToggleMode="onToggleMode" :mode="themeSign">
-      <template v-slot:title="{ mode }">
-        <h1>Theme：{{ !mode ? 'Light' : 'Dark' }}</h1>
-      </template>
-    </layout>
+    <router-view />
     <n-global-style />
   </n-config-provider>
 </template>
@@ -16,31 +12,9 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  onUpdated,
-  ref,
-  watch,
-  watchEffect,
-  watchPostEffect,
-} from 'vue';
+import { defineComponent, ref, provide } from 'vue';
 import { NConfigProvider, zhCN, dateZhCN, darkTheme } from 'naive-ui';
-import { Layout } from '@/components';
-
-onMounted(() => {
-  console.log(`onMounted`);
-});
-
-onUpdated(() => {
-  console.log('onUpdated');
-});
-
-onUnmounted(() => {
-  console.log('onUnmounted');
-});
+import Provider from '@/provider';
 
 // 主题
 const theme = ref<object | null>(null);
@@ -53,18 +27,7 @@ const onToggleMode = (mode: boolean) => {
   else theme.value = null;
 };
 
-// const puls = computed({
-//   get: () => themeSign.value,
-//   set: (_) => (themeSign.value = _),
-// });
-// console.log(puls.value, `puls`);
-// puls.value = true;
-// console.log(puls.value, `puls`);
-
-watchPostEffect((onClear) => {
-  onClear(() => {
-    console.log('hahaha');
-  });
-  console.log(themeSign.value);
-});
+// 提供 切换主题方法 主题变量
+provide(Provider.ToggleThemeMode, onToggleMode);
+provide(Provider.ThemeMode, themeSign);
 </script>
