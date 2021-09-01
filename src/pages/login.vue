@@ -4,7 +4,7 @@
       <svg viewBox="0 0 800 600">
         <symbol id="s-text">
           <text text-anchor="middle" x="50%" y="35%" class="text--line">
-            嗨 👋
+            嗨 Hi
           </text>
           <text text-anchor="middle" x="50%" y="68%" class="text--line2">
             {{ userName }}
