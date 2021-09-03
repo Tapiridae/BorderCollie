@@ -1,5 +1,5 @@
 <template>
-  <div class="login-layout" v-if="isMounted">
+  <div class="login-layout" v-if="isMounted && !isOnline">
     <div class="login-svg">
       <svg viewBox="0 0 800 600">
         <symbol id="s-text">
@@ -60,19 +60,29 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import type { MessageReactive } from 'naive-ui';
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, reactive, ref, toRef } from 'vue';
+import { useStorage } from '@vueuse/core';
 import { useRouter } from 'vue-router';
 import { useMessage } from 'naive-ui';
 
+// 全局信息
 const message = useMessage();
+// 路由
 const router = useRouter();
-const userName = ref('赵嘉伟');
+
+// storage
+const userName = useStorage('userName', '赵嘉伟');
+const isOnline = useStorage('isOnline', false);
+
+// state
 const password = ref('');
 const loading = ref(false);
 const isMounted = ref(false);
 
 onMounted(() => {
   isMounted.value = true;
+  // 如果已登录 直接跳转
+  if (isOnline.value) router.push('/home');
 });
 
 /**
@@ -88,6 +98,7 @@ const handleClick2Login = () => {
       loading.value = false;
       (<any>_message).type = 'success';
       _message.content = '登录成功';
+      isOnline.value = true;
       // 跳转首页
       router.push('/home');
     }, 1500);
