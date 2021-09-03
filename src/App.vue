@@ -7,17 +7,11 @@
   </n-config-provider>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  name: 'App',
-});
-</script>
-
 <script lang="ts" setup>
-import { defineComponent, ref, provide, watchPostEffect } from 'vue';
+import { ref, provide, watchPostEffect } from 'vue';
 import { NConfigProvider, zhCN, dateZhCN, darkTheme } from 'naive-ui';
-import Provider from '@/provider';
 import { useRouter } from 'vue-router';
+import Provider from '@/provider';
 
 const router = useRouter();
 

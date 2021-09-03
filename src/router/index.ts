@@ -9,6 +9,7 @@ interface IRoutes {
   path: string;
   name?: string;
   component: RouteComponent;
+  children?: IRoutes[];
 }
 
 const routes: Array<IRoutes> = [
@@ -18,11 +19,22 @@ const routes: Array<IRoutes> = [
     name: 'Login',
     component: () => import('@/pages/Login.vue'),
   },
-  { path: '/home', name: 'Home', component: import('@/pages/Home.vue') },
+  {
+    path: '/home',
+    name: 'Home',
+    children: [
+      {
+        path: 'calendar',
+        name: 'Calendar',
+        component: () => import('@/pages/Calendar.vue'),
+      },
+    ],
+    component: () => import('@/pages/Home.vue'),
+  },
   {
     path: '/:pathMath(.*)',
     name: 'PageNotFound',
-    component: import('@/pages/PageNotFound.vue'),
+    component: () => import('@/pages/PageNotFound.vue'),
   },
 ];
 
