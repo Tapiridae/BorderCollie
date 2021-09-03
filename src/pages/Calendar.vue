@@ -9,24 +9,29 @@
   </n-calendar>
 </template>
 
+<script lang="ts">
+type HandleUpdateValue = (
+  timestamp: number, // 时间戳
+  {}: { year: number; month: number; date: number }
+) => void;
+
+type IsDateDisabled = (timestamp: number | Date) => boolean;
+</script>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useMessage } from 'naive-ui';
 import { isYesterday, addDays } from 'date-fns';
 
-console.log(123)
-
 const message = useMessage();
 const value = ref(addDays(Date.now(), 1));
-const handleUpdateValue = (_, { year, month, date }) => {
+
+// 更新日期
+const handleUpdateValue: HandleUpdateValue = (_, { year, month, date }) =>
   message.success(`${year}-${month}-${date}`);
-};
-const isDateDisabled = (timestamp) => {
-  if (isYesterday(timestamp)) {
-    return true;
-  }
-  return false;
-};
+
+// 是否禁用
+const isDateDisabled: IsDateDisabled = (timestamp) => isYesterday(timestamp);
 </script>
 
 <style></style>
