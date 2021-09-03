@@ -32,14 +32,7 @@
   </n-layout>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  name: 'sidebar',
-});
-</script>
-
 <script lang="ts" setup>
-import { defineComponent } from 'vue';
 import Provider from '@/provider';
 import { Icon } from '@vicons/utils';
 import { DarkModeRound, LightModeOutlined } from '@vicons/material';

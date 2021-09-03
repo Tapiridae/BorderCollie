@@ -52,18 +52,12 @@
   </div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  name: 'Login',
-});
-</script>
-
 <script lang="ts" setup>
 import type { MessageReactive } from 'naive-ui';
-import { defineComponent, onMounted, ref } from 'vue';
-import Provider from '@/provider';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useMessage } from 'naive-ui';
+import Provider from '@/provider';
 
 // 全局信息
 const message = useMessage();
