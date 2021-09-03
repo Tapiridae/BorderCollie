@@ -60,8 +60,8 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import type { MessageReactive } from 'naive-ui';
-import { defineComponent, onMounted, reactive, ref, toRef } from 'vue';
-import { useStorage } from '@vueuse/core';
+import { defineComponent, onMounted, ref } from 'vue';
+import Provider from '@/provider';
 import { useRouter } from 'vue-router';
 import { useMessage } from 'naive-ui';
 
@@ -71,8 +71,8 @@ const message = useMessage();
 const router = useRouter();
 
 // storage
-const userName = useStorage('userName', '赵嘉伟');
-const isOnline = useStorage('isOnline', false);
+const userName = Provider.globalUserName;
+const isOnline = Provider.globalOnlineStatus;
 
 // state
 const password = ref('');

@@ -4,8 +4,7 @@
       Header
       <div class="switch-mode">
         <Icon>
-          <DarkModeRound v-show="!mode" @click="handleToggleDarkMode">
-          </DarkModeRound>
+          <DarkModeRound v-show="!mode" @click="handleToggleDarkMode" />
           <LightModeOutlined v-show="mode" @click="handleToggleLightMode" />
         </Icon>
       </div>
@@ -41,6 +40,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import { defineComponent } from 'vue';
+import Provider from '@/provider';
 import { Icon } from '@vicons/utils';
 import { DarkModeRound, LightModeOutlined } from '@vicons/material';
 
@@ -48,6 +48,8 @@ const props = defineProps<{ mode: boolean }>();
 const emit = defineEmits<{
   (e: 'onToggleMode', mode: boolean): void;
 }>();
+
+const mode = Provider.globalThemeMode;
 
 // 深色模式
 const handleToggleDarkMode = () => emit('onToggleMode', true);
