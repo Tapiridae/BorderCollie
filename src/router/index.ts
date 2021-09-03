@@ -7,18 +7,23 @@ import {
 
 interface IRoutes {
   path: string;
-  name: string;
+  name?: string;
   component: RouteComponent;
 }
 
 const routes: Array<IRoutes> = [
-  { path: '/', name: '', component: import('@/pages/Login.vue') },
+  { path: '/', component: import('@/pages/Login.vue') },
   {
     path: '/login',
     name: 'Login',
     component: () => import('@/pages/Login.vue'),
   },
   { path: '/home', name: 'Home', component: import('@/pages/Home.vue') },
+  {
+    path: '/:pathMath(.*)',
+    name: 'PageNotFound',
+    component: import('@/pages/PageNotFound.vue'),
+  },
 ];
 
 const router: Router = createRouter({
