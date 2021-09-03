@@ -19,7 +19,12 @@
         :native-scrollbar="false"
         bordered
       >
-        <n-h2>Sidebar</n-h2>
+        <router-link active-class="active-link" to="/home"
+          ><n-h2>Home</n-h2></router-link
+        >
+        <router-link active-class="active-link" to="/home/calendar"
+          ><n-h2>Calendar</n-h2></router-link
+        >
       </n-layout-sider>
       <n-layout content-style="padding: 24px;" :native-scrollbar="false">
         <n-h2>Content</n-h2>
@@ -32,7 +37,14 @@
   </n-layout>
 </template>
 
+<script lang="ts">
+const routeProps = {
+  ...(<any>RouterLink).props,
+};
+</script>
+
 <script lang="ts" setup>
+import { RouterLink, useLink } from 'vue-router';
 import Provider from '@/provider';
 import { Icon } from '@vicons/utils';
 import { DarkModeRound, LightModeOutlined } from '@vicons/material';
@@ -42,6 +54,10 @@ const emit = defineEmits<{
   (e: 'onToggleMode', mode: boolean): void;
 }>();
 
+const Link = useLink(routeProps);
+console.log(Link, `link`);
+
+// 全局主题模式
 const mode = Provider.globalThemeMode;
 
 // 深色模式
@@ -52,8 +68,17 @@ const handleToggleLightMode = () => emit('onToggleMode', false);
 </script>
 
 <style lang="less" scoped>
+a {
+  text-decoration: none;
+}
+
 .layout-container {
   height: 100vh;
+
+  .active-link {
+    color: red;
+    text-emphasis: red;
+  }
 
   .layout-header {
     height: 64px;
