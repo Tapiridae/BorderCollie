@@ -18,6 +18,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/twemoji": "^12.1.2",
     "@vicons/material": "^0.11.0",
     "@vicons/utils": "^0.1.4",
     "@vitejs/plugin-vue": "^1.3.0",

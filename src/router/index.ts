@@ -12,6 +12,7 @@ interface IRoutes {
 }
 
 const routes: Array<IRoutes> = [
+  { path: '/', name: '', component: import('@/pages/Login.vue') },
   {
     path: '/login',
     name: 'Login',
