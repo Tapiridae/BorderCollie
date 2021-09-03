@@ -66,7 +66,6 @@ import { useMessage } from 'naive-ui';
 
 const message = useMessage();
 const router = useRouter();
-
 const userName = ref('赵嘉伟');
 const password = ref('');
 const loading = ref(false);
