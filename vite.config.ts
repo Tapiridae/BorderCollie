@@ -8,4 +8,8 @@ export default defineConfig({
     alias: [{ find: '@', replacement: resolve('./src') }],
   },
   plugins: [vue()],
+  base: './',
+  build: {
+    outDir: 'ass',
+  },
 });
