@@ -11,7 +11,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@vueuse/core": "^6.0.0",
+    "@vueuse/core": "^6.2.0",
     "less": "^4.1.1",
     "vue": "^3.2.2",
     "vue-router": "^4.0.11",
@@ -21,17 +21,17 @@
     "@types/twemoji": "^12.1.2",
     "@vicons/material": "^0.11.0",
     "@vicons/utils": "^0.1.4",
-    "@vitejs/plugin-vue": "^1.3.0",
-    "@vue/compiler-sfc": "^3.0.5",
-    "naive-ui": "^2.16.5",
-    "typescript": "^4.3.5",
+    "@vitejs/plugin-vue": "^1.6.0",
+    "@vue/compiler-sfc": "^3.2.9",
+    "naive-ui": "^2.17.1",
+    "typescript": "^4.4.2",
     "vfonts": "^0.1.0",
-    "vite": "^2.4.4",
-    "vite-plugin-compression": "^0.3.1",
-    "vite-plugin-html": "^2.0.7",
-    "vite-plugin-mock": "^2.9.3",
-    "vite-plugin-style-import": "^1.0.1",
-    "vue-eslint-parser": "^7.8.0",
-    "vue-tsc": "^0.2.2"
+    "vite": "^2.5.3",
+    "vite-plugin-compression": "^0.3.5",
+    "vite-plugin-html": "^2.1.0",
+    "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-style-import": "^1.2.1",
+    "vue-eslint-parser": "^7.11.0",
+    "vue-tsc": "^0.3.0"
   }
 }
