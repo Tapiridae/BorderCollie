@@ -77,7 +77,12 @@ const onSend = useDebounceFn(() => {
 // 监听收到的数据
 watch(data, (value) => {
   if (!value) return;
-  const { text, createTimestamp } = JSON.parse(value);
+  const {
+    text,
+    createTimestamp,
+    author: { userName },
+  } = JSON.parse(value);
+
   const message = {
     type: 'success',
     title: 'Ta',
