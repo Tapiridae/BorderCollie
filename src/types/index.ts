@@ -4,4 +4,11 @@ interface LayoutMenuOptions {
   icon?: string;
 }
 
-export type { LayoutMenuOptions };
+interface AcceptMessagesType {
+  type: string;
+  title: string;
+  content: string;
+  time: string;
+}
+
+export type { LayoutMenuOptions, AcceptMessagesType };
