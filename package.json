@@ -1,37 +1,26 @@
 {
-  "name": "bordercollie",
+  "name": "h",
   "version": "0.0.0",
-  "author": {
-    "name": "WEISHAODAREN",
-    "email": "weishaodaren@gmail.com"
-  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
-    "@vueuse/core": "^6.2.0",
+    "@vueuse/core": "^6.7.4",
     "less": "^4.1.1",
-    "vue": "^3.2.2",
+    "vue": "^3.2.16",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@types/twemoji": "^12.1.2",
     "@vicons/material": "^0.11.0",
     "@vicons/utils": "^0.1.4",
-    "@vitejs/plugin-vue": "^1.6.0",
-    "@vue/compiler-sfc": "^3.2.9",
-    "naive-ui": "^2.17.1",
-    "typescript": "^4.4.2",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "naive-ui": "^2.20.0",
+    "typescript": "^4.4.3",
     "vfonts": "^0.1.0",
-    "vite": "^2.5.3",
-    "vite-plugin-compression": "^0.3.5",
-    "vite-plugin-html": "^2.1.0",
-    "vite-plugin-mock": "^2.9.6",
-    "vite-plugin-style-import": "^1.2.1",
-    "vue-eslint-parser": "^7.11.0",
+    "vite": "^2.6.4",
     "vue-tsc": "^0.3.0"
   }
 }

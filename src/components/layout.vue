@@ -25,6 +25,9 @@
         <router-link active-class="active-link" to="/home/calendar"
           ><n-h2>Calendar</n-h2></router-link
         >
+        <router-link active-class="active-link" to="/home/calendar"
+          ><n-h2>CustomerServices</n-h2></router-link
+        >
       </n-layout-sider>
       <n-layout content-style="padding: 24px;" :native-scrollbar="false">
         <n-h2>Content</n-h2>
@@ -48,7 +51,6 @@ import { RouterLink, useLink } from 'vue-router';
 import Provider from '@/provider';
 import { Icon } from '@vicons/utils';
 import { DarkModeRound, LightModeOutlined } from '@vicons/material';
-
 const props = defineProps<{ mode: boolean }>();
 const emit = defineEmits<{
   (e: 'onToggleMode', mode: boolean): void;
