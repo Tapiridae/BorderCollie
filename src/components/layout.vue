@@ -1,7 +1,7 @@
 <template>
   <n-layout class="layout-container">
     <n-layout-header class="layout-header" bordered>
-      Header
+      <n-h5>Header</n-h5>
       <div class="switch-mode">
         <span v-show="!mode" @click="handleToggleDarkMode">Dark</span>
         <span v-show="mode" @click="handleToggleLightMode">Light</span>
@@ -29,12 +29,11 @@
         >
       </n-layout-sider>
       <n-layout content-style="padding: 24px;" :native-scrollbar="false">
-        <n-h2>Content</n-h2>
         <slot name="title" :mode="mode"></slot>
       </n-layout>
     </n-layout>
     <n-layout-footer class="layout-footer" position="absolute" bordered>
-      Footer
+      <n-h5>Footer</n-h5>
     </n-layout-footer>
   </n-layout>
 </template>
@@ -48,6 +47,7 @@ const routeProps = {
 <script lang="ts" setup>
 import { RouterLink, useLink } from 'vue-router';
 import Provider from '@/provider';
+
 const props = defineProps<{ mode: boolean }>();
 const emit = defineEmits<{
   (e: 'onToggleMode', mode: boolean): void;

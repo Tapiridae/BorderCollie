@@ -1,7 +1,6 @@
 <template>
   <Layout @onToggleMode="onToggleMode" :mode="themeSign">
     <template v-slot:title="{ mode }">
-      <h1>Theme：{{ !mode ? 'Light' : 'Dark' }}</h1>
       <router-view />
     </template>
   </Layout>
