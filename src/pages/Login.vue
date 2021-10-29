@@ -1,5 +1,5 @@
 <template>
-  <div class="login-layout" v-if="isMounted && !isOnline">
+  <div class="login-layout">
     <div class="login-svg">
       <svg viewBox="0 0 800 600">
         <symbol id="s-text">
@@ -33,7 +33,7 @@
             v-model:value="password"
             type="password"
             placeholder="请输入密码"
-            show-password-toggle
+            showPasswordOn="click"
             :maxlength="16"
             round
           />
@@ -73,11 +73,11 @@ const password = ref('');
 const loading = ref(false);
 const isMounted = ref(false);
 
-onMounted(() => {
-  isMounted.value = true;
-  // 如果已登录 直接跳转
-  if (isOnline.value) router.push('/home');
-});
+// onMounted(() => {
+//   isMounted.value = true;
+//   // 如果已登录 直接跳转
+//   if (isOnline.value) router.push('/home');
+// });
 
 /**
  * @description 点击登录

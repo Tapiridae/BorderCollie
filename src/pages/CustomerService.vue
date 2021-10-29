@@ -11,7 +11,7 @@
       </template>
     </n-timeline>
   </n-scrollbar>
-  <n-space>
+  <n-space style="margin-top: 30px">
     <n-input
       style="width: 500px"
       type="textarea"
@@ -20,8 +20,7 @@
       :autosize="{
         minRows: 3,
       }"
-      :value="inputValue"
-      @input="onChange"
+      v-model:value="inputValue"
       placeholder="试着聊聊天"
     />
     <n-button type="primary" @click="onSend">发送</n-button>
@@ -53,9 +52,6 @@ const isSended = ref(false);
 
 // 聊天记录
 const messages = reactive<AcceptMessagesType[]>([]);
-
-// 输入框变化
-const onChange = (data: string) => (inputValue.value = data);
 
 // 发送事件 300ms 防抖
 const onSend = useDebounceFn(() => {
