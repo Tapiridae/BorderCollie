@@ -1,6 +1,11 @@
 {
   "name": "h",
   "version": "0.0.0",
+  "author": {
+    "email": "weishaodaren@gmail.com",
+    "name": "weishaodaren"
+  },
+  "homepage": "https://tapiridae.github.io/BorderCollie",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
