@@ -5,7 +5,7 @@
     "email": "weishaodaren@gmail.com",
     "name": "weishaodaren"
   },
-  "homepage": "https://tapiridae.github.io/BorderCollie",
+  "homepage": "https://tapiridae.github.io/BorderCollie/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
