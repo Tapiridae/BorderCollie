@@ -1,6 +1,6 @@
 <template>
   <Layout @onToggleMode="onToggleMode" :mode="themeSign">
-    <template v-slot:title="{ mode }">
+    <template v-slot:title>
       <router-view />
     </template>
   </Layout>
