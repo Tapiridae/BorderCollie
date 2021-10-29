@@ -18,9 +18,6 @@
         :show-collapsed-content="false"
         bordered
       >
-        <router-link active-class="active-link" to="/home"
-          ><n-h2>Home</n-h2></router-link
-        >
         <router-link active-class="active-link" to="/home/calendar"
           ><n-h2>Calendar</n-h2></router-link
         >
