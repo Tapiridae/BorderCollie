@@ -1,15 +1,17 @@
 <template>
-  <n-timeline class="time-line-container">
-    <template v-for="item in messages" :key="item.time">
-      <n-timeline-item
-        :type="item.type"
-        :title="item.title"
-        :content="item.content"
-        :time="item.time"
-      />
-    </template>
-  </n-timeline>
-  <n-space>
+  <n-scrollbar style="max-height: 400px">
+    <n-timeline>
+      <template v-for="item in messages" :key="item.time">
+        <n-timeline-item
+          :type="item.type"
+          :title="item.title"
+          :content="item.content"
+          :time="item.time"
+        />
+      </template>
+    </n-timeline>
+  </n-scrollbar>
+  <n-space style="margin-top: 30px">
     <n-input
       style="width: 500px"
       type="textarea"
@@ -18,8 +20,7 @@
       :autosize="{
         minRows: 3,
       }"
-      :value="inputValue"
-      @input="onChange"
+      v-model:value="inputValue"
       placeholder="试着聊聊天"
     />
     <n-button type="primary" @click="onSend">发送</n-button>
@@ -51,9 +52,6 @@ const isSended = ref(false);
 
 // 聊天记录
 const messages = reactive<AcceptMessagesType[]>([]);
-
-// 输入框变化
-const onChange = (data: string) => (inputValue.value = data);
 
 // 发送事件 300ms 防抖
 const onSend = useDebounceFn(() => {
@@ -108,9 +106,4 @@ watch(isSended, (value) => {
 });
 </script>
 
-<style lang="less" scoped>
-.time-line-container {
-  max-height: 400px;
-  overflow: auto;
-}
-</style>
+<style lang="less" scoped></style>

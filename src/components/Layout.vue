@@ -54,7 +54,6 @@ const emit = defineEmits<{
 }>();
 
 const Link = useLink(routeProps);
-console.log(Link, `link`);
 
 // 全局主题模式
 const mode = Provider.globalThemeMode;
