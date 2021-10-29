@@ -1,9 +1,11 @@
+// 布局菜单
 interface LayoutMenuOptions {
-  label: string;
+  label: string | (() => void);
   key: string;
-  icon?: string;
+  [x: string]: string | (() => void);
 }
 
+// 接受客服信息类型
 interface AcceptMessagesType {
   type: string;
   title: string;

@@ -54,7 +54,7 @@
 
 <script lang="ts" setup>
 import type { MessageReactive } from 'naive-ui';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useMessage } from 'naive-ui';
 import Provider from '@/provider';
