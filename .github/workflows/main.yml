@@ -1,0 +1,36 @@
+# main.yml
+name: release
+
+# 触发 workflow 的事件
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+    # 一个job任务，任务名为build
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 更新源代码
+                uses: actions/checkout@v2.3.5
+            - name: 设置Node环境
+                uses: actions/setup-node@v2.4.1
+                with:
+                    node-version: 14
+              - name: 缓存npm安装模块
+                    uses: actions/cache@v2.1.6
+                    with:
+                      path: ~/.npm
+                      key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+                      restore-keys: |
+                        ${{ runner.OS }}-npm
+            - name: 安装项目依赖
+                run: npm install
+            - name: 编译文件
+                run: npm build
+            -name: 发布
+                uses: actions/upload-artifact@v2.1.3
+                with:
+                  path: ass
+            

@@ -6,7 +6,6 @@
         :title="item.title"
         :content="item.content"
         :time="item.time"
-        format="yyyy-MM-dd hh:mm:ss"
       />
     </template>
   </n-timeline>
