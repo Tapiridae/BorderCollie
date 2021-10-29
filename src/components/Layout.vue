@@ -18,12 +18,12 @@
         :show-collapsed-content="false"
         bordered
       >
-        <router-link active-class="active-link" to="/home/calendar"
-          ><n-h2>Calendar</n-h2></router-link
-        >
-        <router-link active-class="active-link" to="/home/customerService"
-          ><n-h2>CustomerServices</n-h2></router-link
-        >
+        <n-menu
+          :inverted="inverted"
+          :collapsed-width="64"
+          :collapsed-icon-size="22"
+          :options="menuOptions"
+        />
       </n-layout-sider>
       <n-layout content-style="padding: 24px;" :native-scrollbar="false">
         <slot name="title"></slot>
@@ -36,6 +36,35 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, h } from 'vue';
+import { RouterLink } from 'vue-router';
+import type { LayoutMenuOptions } from '@/types';
+
+const menuOptions: LayoutMenuOptions[] = [
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: '/home/calendar',
+        },
+        { default: () => '日历' }
+      ),
+    key: 'calendar',
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: '/home/customerService',
+        },
+        { default: () => '客服' }
+      ),
+    key: 'customerService',
+  },
+];
+
 const routeProps = {
   ...(<any>RouterLink).props,
 };
@@ -69,11 +98,6 @@ a {
 
 .layout-container {
   height: 100vh;
-
-  .active-link {
-    color: red;
-    text-emphasis: red;
-  }
 
   .layout-header {
     height: 64px;

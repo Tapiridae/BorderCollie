@@ -32,17 +32,18 @@ import { useWebSocket, useDebounceFn } from '@vueuse/core';
 import { ref, watch, reactive } from 'vue';
 import { WebSocketCustomerService } from '@/constants';
 import { format, fromUnixTime } from 'date-fns';
-
+import Provider from '@/provider';
 import type { AcceptMessagesType } from '@/types';
 
 const { status, data, send, open, close } = useWebSocket(
   WebSocketCustomerService.WSS + '535fe8a3d9fb44e0bfc50ebbdb6b4b32'
 );
 
+// 获取Token
+const Token = Provider.globalToken.value;
 const params = {
   action: 'auth',
-  token:
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJrZXl1IiwiaWF0IjoxNjM1NDEwNTI3LCJleHAiOjE2MzU0OTY5MjcsInVpZCI6NDV9.YGG-Yy4mbh1ncIoiF77CkSI8sQIWzo0oGxzk-WANomw',
+  token: Token,
 };
 send(JSON.stringify(params));
 
@@ -77,16 +78,16 @@ watch(data, (value) => {
   const {
     text,
     createTimestamp,
-    author: { userName },
+    // author: { userName },
   } = JSON.parse(value);
 
+  if (!createTimestamp || !text) return;
   const message = {
     type: 'success',
     title: 'Ta',
     content: text,
     time: format(fromUnixTime(createTimestamp), 'yyyy-MM-dd hh:mm:ss'),
   };
-
   // 推送消息
   messages.push(message);
 });
