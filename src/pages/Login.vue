@@ -73,12 +73,6 @@ const password = ref('');
 const loading = ref(false);
 const isMounted = ref(false);
 
-// onMounted(() => {
-//   isMounted.value = true;
-//   // 如果已登录 直接跳转
-//   if (isOnline.value) router.push('/home');
-// });
-
 /**
  * @description 点击登录
  */
