@@ -29,7 +29,7 @@
         >
       </n-layout-sider>
       <n-layout content-style="padding: 24px;" :native-scrollbar="false">
-        <slot name="title" :mode="mode"></slot>
+        <slot name="title"></slot>
       </n-layout>
     </n-layout>
     <n-layout-footer class="layout-footer" position="absolute" bordered>
