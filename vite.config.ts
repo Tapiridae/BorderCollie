@@ -8,7 +8,7 @@ export default defineConfig({
     alias: [{ find: '@', replacement: resolve('./src') }],
   },
   plugins: [vue()],
-  base: process.env.NODE_ENV === 'production' ? '/BorderCollie/' : '/',
+  base: '/BorderCollie/',
   build: {
     outDir: 'bin',
   },
