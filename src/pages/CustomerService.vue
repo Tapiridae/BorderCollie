@@ -1,14 +1,16 @@
 <template>
-  <n-timeline class="time-line-container">
-    <template v-for="item in messages" :key="item.time">
-      <n-timeline-item
-        :type="item.type"
-        :title="item.title"
-        :content="item.content"
-        :time="item.time"
-      />
-    </template>
-  </n-timeline>
+  <n-scrollbar style="max-height: 400px">
+    <n-timeline>
+      <template v-for="item in messages" :key="item.time">
+        <n-timeline-item
+          :type="item.type"
+          :title="item.title"
+          :content="item.content"
+          :time="item.time"
+        />
+      </template>
+    </n-timeline>
+  </n-scrollbar>
   <n-space>
     <n-input
       style="width: 500px"
@@ -108,9 +110,4 @@ watch(isSended, (value) => {
 });
 </script>
 
-<style lang="less" scoped>
-.time-line-container {
-  max-height: 400px;
-  overflow: auto;
-}
-</style>
+<style lang="less" scoped></style>
