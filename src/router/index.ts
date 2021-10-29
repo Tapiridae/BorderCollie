@@ -8,12 +8,13 @@ import {
 interface IRoutes {
   path: string;
   name?: string;
+  redirect?: string | object;
   component: RouteComponent;
   children?: IRoutes[];
 }
 
 const routes: Array<IRoutes> = [
-  { path: '/', component: import('@/pages/Home.vue') },
+  { path: '/', redirect: '/home', component: import('@/pages/Home.vue') },
   {
     path: '/login',
     name: 'Login',
