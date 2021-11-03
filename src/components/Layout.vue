@@ -10,7 +10,7 @@
     <n-layout class="layout-side" position="absolute" has-sider>
       <n-layout-sider
         collapse-mode="width"
-        :collapsed-width="120"
+        :collapsed-width="0"
         :width="240"
         show-trigger="bar"
         content-style="padding: 24px;"
