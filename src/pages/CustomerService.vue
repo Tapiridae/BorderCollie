@@ -23,7 +23,12 @@
       v-model:value="inputValue"
       placeholder="试着聊聊天"
     />
-    <n-button type="primary" @click="onSend">发送</n-button>
+    <n-button type="primary" @click="onSend" :disabled="buttonDisabled"
+      >发送</n-button
+    >
+    <n-button type="primary" @click="onClose" :disabled="buttonDisabled"
+      >离开</n-button
+    >
   </n-space>
 </template>
 
@@ -35,8 +40,9 @@ import { format, fromUnixTime } from 'date-fns';
 import Provider from '@/provider';
 import type { AcceptMessagesType } from '@/types';
 
-const { status, data, send, open, close } = useWebSocket(
-  WebSocketCustomerService.WSS + '535fe8a3d9fb44e0bfc50ebbdb6b4b32'
+// 聊天室WS
+const { data, send, close } = useWebSocket(
+  WebSocketCustomerService.CHAT_ROOM + WebSocketCustomerService.UUID
 );
 
 // 获取Token
@@ -47,14 +53,20 @@ const params = {
 };
 send(JSON.stringify(params));
 
-// 输入框值
-const inputValue = ref<string>('');
-const isSended = ref<boolean>(false);
+/**
+ * ------------------------------------------------------------------
+ * --------------------------State-----------------------------------
+ * ------------------------------------------------------------------
+ */
+const inputValue = ref<string>(''); // 输入框值
+const isSended = ref<boolean>(false); // 是否发送
+const buttonDisabled = ref<boolean>(false); // 按钮是否禁用
+const messages = reactive<AcceptMessagesType[]>([]); // 聊天记录
 
-// 聊天记录
-const messages = reactive<AcceptMessagesType[]>([]);
-
-// 发送事件 300ms 防抖
+/**
+ * Function
+ * @description 发送事件 300ms 防抖
+ */
 const onSend = useDebounceFn(() => {
   if (!inputValue.value) return;
 
@@ -70,6 +82,16 @@ const onSend = useDebounceFn(() => {
     isSended.value = false;
     inputValue.value = '';
   }, 200);
+}, 300);
+
+/**
+ * Function
+ * @description 关闭WS
+ */
+const onClose = useDebounceFn(() => {
+  close();
+  // 按钮禁用
+  buttonDisabled.value = true;
 }, 300);
 
 // 监听收到的数据

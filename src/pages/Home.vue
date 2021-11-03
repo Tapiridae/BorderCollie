@@ -11,6 +11,21 @@ import type { Ref } from 'vue';
 import { inject } from 'vue';
 import Provider from '@/provider';
 import { Layout } from '@/components';
+import { useWebSocket } from '@vueuse/core';
+import { WebSocketCustomerService } from '@/constants';
+
+// 通知WS
+const { status, data, send, open, close } = useWebSocket(
+  WebSocketCustomerService.NOTIFICATION
+);
+
+// 获取Token
+const Token = Provider.globalToken.value;
+const params = {
+  action: 'auth',
+  token: Token,
+};
+send(JSON.stringify(params));
 
 // 注入 切换主题 主题
 const onToggleMode = <() => void>inject(Provider.ToggleThemeMode);
