@@ -37,6 +37,13 @@
             :maxlength="16"
             round
           />
+          <n-input
+            v-model:value="Token"
+            type="text"
+            placeholder="请输入Token"
+            clearable
+            round
+          />
           <n-button
             round
             type="primary"
@@ -67,11 +74,12 @@ const router = useRouter();
 // storage
 const userName = Provider.globalUserName;
 const isOnline = Provider.globalOnlineStatus;
+const Token = Provider.globalToken;
 
 // state
-const password = ref('');
-const loading = ref(false);
-const isMounted = ref(false);
+const password = ref<string>('');
+const loading = ref<boolean>(false);
+const isMounted = ref<boolean>(false);
 
 /**
  * @description 点击登录
