@@ -48,8 +48,8 @@ const params = {
 send(JSON.stringify(params));
 
 // 输入框值
-const inputValue = ref('');
-const isSended = ref(false);
+const inputValue = ref<string>('');
+const isSended = ref<boolean>(false);
 
 // 聊天记录
 const messages = reactive<AcceptMessagesType[]>([]);
