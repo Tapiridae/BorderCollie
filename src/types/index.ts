@@ -27,6 +27,7 @@ interface HitoryTodayType extends CommonAPIType {
     month: string;
     day: string;
     details: string;
+    key: string;
   }>;
 }
 
