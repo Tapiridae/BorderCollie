@@ -13,4 +13,22 @@ interface AcceptMessagesType {
   time: string;
 }
 
-export type { LayoutMenuOptions, AcceptMessagesType };
+interface CommonAPIType {
+  code: number;
+  msg: string;
+}
+
+// 历史上的今天
+interface HitoryTodayType extends CommonAPIType {
+  data: Array<{
+    picUrl?: string;
+    title: string;
+    year: string;
+    month: string;
+    day: string;
+    details: string;
+    key: string;
+  }>;
+}
+
+export type { LayoutMenuOptions, AcceptMessagesType, HitoryTodayType };
