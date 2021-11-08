@@ -1,4 +1,5 @@
-class WebSocketCustomerService {
+// 客服聊天室WS
+export class WebSocketCustomerService {
   static get CHAT_ROOM() {
     return 'wss://beta-chat-ws.keyush.cn/chat_room/';
   }
@@ -12,4 +13,16 @@ class WebSocketCustomerService {
   }
 }
 
-export { WebSocketCustomerService };
+// API
+export class WebAPI {
+  static get DOMAIN() {
+    return 'https://www.mxnzp.com/api/';
+  }
+  static get APP_ID() {
+    return 'vtezholmudmllvug';
+  }
+
+  static get APP_SECRET() {
+    return 'cWV1M2F1R25qNFFsTHI0cVArcHNYUT09';
+  }
+}

@@ -13,6 +13,11 @@ import Provider from '@/provider';
 import { Layout } from '@/components';
 import { useWebSocket } from '@vueuse/core';
 import { WebSocketCustomerService } from '@/constants';
+import useFetch from '@/requests';
+import { getHistoryToday } from '@/requests/messages';
+
+const { isFetching, error, data: _data, get } = useFetch(getHistoryToday());
+console.log(isFetching, error, _data);
 
 // 通知WS
 const { status, data, send, open, close } = useWebSocket(
