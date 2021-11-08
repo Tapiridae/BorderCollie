@@ -8,7 +8,8 @@
 
 <script lang="ts" setup>
 import type { Ref } from 'vue';
-import { inject } from 'vue';
+import type { HitoryTodayType } from '@/types';
+import { inject, reactive, watchPostEffect } from 'vue';
 import Provider from '@/provider';
 import { Layout } from '@/components';
 import { useWebSocket } from '@vueuse/core';
@@ -16,8 +17,18 @@ import { WebSocketCustomerService } from '@/constants';
 import useFetch from '@/requests';
 import { getHistoryToday } from '@/requests/messages';
 
-const { isFetching, error, data: _data, get } = useFetch(getHistoryToday());
-console.log(isFetching, error, _data);
+// 获取历史今天
+const { data: _data } = useFetch(getHistoryToday()).get();
+
+const homeData = reactive({ historyData: <HitoryTodayType>{} });
+
+// 监听获取历史今天数据
+watchPostEffect(() => {
+  if (!_data?.value) return;
+  const { data } = JSON.parse(<string>_data?.value);
+  homeData.historyData = data;
+  console.log(data);
+});
 
 // 通知WS
 const { status, data, send, open, close } = useWebSocket(

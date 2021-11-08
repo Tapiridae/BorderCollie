@@ -4,7 +4,7 @@ import { WebAPI } from '../constants';
 const useFetch = createFetch({
   baseUrl: `${WebAPI.DOMAIN}`,
   options: {
-    async beforeFetch({ options }) {
+    beforeFetch({ options }) {
       options.headers = {
         ...options.headers,
         app_id: WebAPI.APP_ID,
@@ -13,6 +13,14 @@ const useFetch = createFetch({
         'Access-Control-Allow-Origin': '*',
       };
       return { options };
+    },
+    afterFetch(ctx) {
+      // console.log(ctx, `回调`);
+      const {
+        response: { status },
+      } = ctx;
+
+      return ctx;
     },
   },
   fetchOptions: {

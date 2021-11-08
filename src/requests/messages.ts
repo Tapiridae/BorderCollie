@@ -7,6 +7,6 @@ const wrapperAPI = (API: string) =>
 /**
  * @description 历史的今天
  */
-export const getHistoryToday: (type: number) => string = (T) => {
+export const getHistoryToday: (type?: number) => string = (T = 0) => {
   return wrapperAPI(`history/today?type=${T}`);
 };
