@@ -1,7 +1,21 @@
 <template>
   <Layout @onToggleMode="onToggleMode" :mode="themeSign">
     <template v-slot:title>
-      <router-view />
+      <!-- Home -->
+      <div v-show="isHome">
+        <n-gradient-text type="info"> Live Forever </n-gradient-text>
+        <n-gradient-text type="danger"> Live Forever </n-gradient-text>
+        <br />
+        <n-gradient-text :size="24" type="warning">
+          Married with Children
+        </n-gradient-text>
+        <br />
+        <n-gradient-text :size="24" type="success">
+          Back in the USSR
+        </n-gradient-text>
+      </div>
+      <!-- Other -->
+      <router-view v-show="!isHome" />
     </template>
   </Layout>
 </template>
@@ -9,18 +23,27 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue';
 import type { HitoryTodayType } from '@/types';
-import { inject, reactive, watchPostEffect } from 'vue';
+
+import { inject, ref, reactive, watchPostEffect } from 'vue';
+import { useRoute } from 'vue-router';
+
 import Provider from '@/provider';
 import { Layout } from '@/components';
 import { useWebSocket } from '@vueuse/core';
 import { WebSocketCustomerService } from '@/constants';
 import useFetch from '@/requests';
 import { getHistoryToday } from '@/requests/messages';
+import { uuid } from '@/utils';
 
 // 获取历史今天
 const { data: _data } = useFetch(getHistoryToday()).get();
-
-const homeData = reactive({ historyData: <HitoryTodayType>{} });
+const { name } = useRoute();
+// 是否是主页
+const isHome = ref<boolean>(name === 'Home');
+// 主页数据
+const homeData = reactive({
+  historyData: {} as Omit<HitoryTodayType, 'msg' | 'code'>,
+});
 
 // 监听获取历史今天数据
 watchPostEffect(() => {
