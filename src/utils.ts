@@ -19,3 +19,12 @@ export const uuid: () => string = () => {
   URL.revokeObjectURL(_url);
   return uuid.substr(uuid.lastIndexOf('/') + 1);
 };
+
+/**
+ * @description 获取随机按钮主题
+ * @returns {String}
+ */
+export const randomType = () => {
+  let theme = ['primary', 'info', 'default', 'warning', 'error'];
+  return theme[parseInt(String(Math.random() * 5))];
+};

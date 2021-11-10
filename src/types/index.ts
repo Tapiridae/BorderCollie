@@ -31,4 +31,31 @@ interface HitoryTodayType extends CommonAPIType {
   }>;
 }
 
-export type { LayoutMenuOptions, AcceptMessagesType, HitoryTodayType };
+// 新闻类型列表
+interface NewsTypesType extends CommonAPIType {
+  data: Array<{
+    typeId: number;
+    typeName: string;
+  }>;
+}
+
+// 指定类型 新闻列表
+interface NewsListType extends CommonAPIType {
+  data: Array<{
+    title: string;
+    digest: string;
+    imgList: string[] | null;
+    newsId: string;
+    postTime: Date;
+    source: string;
+    videoList: string[] | null;
+  }>;
+}
+
+export type {
+  LayoutMenuOptions,
+  AcceptMessagesType,
+  HitoryTodayType,
+  NewsTypesType,
+  NewsListType,
+};

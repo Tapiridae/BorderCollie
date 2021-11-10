@@ -29,7 +29,7 @@
 import type { Ref } from 'vue';
 import type { HitoryTodayType } from '@/types';
 
-import { inject, ref, reactive, watchPostEffect, watch } from 'vue';
+import { inject, ref, reactive, watchPostEffect } from 'vue';
 import { useRoute } from 'vue-router';
 
 import Provider from '@/provider';
