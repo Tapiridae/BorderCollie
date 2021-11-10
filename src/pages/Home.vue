@@ -2,7 +2,7 @@
   <Layout @onToggleMode="onToggleMode" :mode="themeSign">
     <template v-slot:title>
       <!-- Home -->
-      <div v-show="isHome">
+      <div v-if="isHome">
         <n-space vertical>
           <div v-for="i in homeData.historyData" :key="uuid()">
             <n-gradient-text :size="24" type="warning">
@@ -20,7 +20,7 @@
         </n-space>
       </div>
       <!-- Other -->
-      <router-view v-show="!isHome" />
+      <router-view v-if="!isHome" />
     </template>
   </Layout>
 </template>
@@ -61,11 +61,11 @@ watchPostEffect(() => {
   );
   data.forEach((_) => (_['key'] = uuid()));
   homeData.historyData = data;
-  console.log(data);
 });
 
 // 监听路由
-watch(Route, ({ name }) => {
+watchPostEffect(() => {
+  const { name } = Route;
   isHome.value = name === 'Home';
 });
 

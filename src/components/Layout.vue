@@ -19,7 +19,7 @@
         bordered
       >
         <n-menu
-          :inverted="inverted"
+          :inverted="true"
           :collapsed-width="64"
           :collapsed-icon-size="22"
           :options="menuOptions"
@@ -35,51 +35,14 @@
   </n-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, h } from 'vue';
-import { RouterLink } from 'vue-router';
-import type { LayoutMenuOptions } from '@/types';
-
-const menuOptions: LayoutMenuOptions[] = [
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: '/home/calendar',
-        },
-        { default: () => '日历' }
-      ),
-    key: 'calendar',
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: '/home/customerService',
-        },
-        { default: () => '客服' }
-      ),
-    key: 'customerService',
-  },
-];
-
-const routeProps = {
-  ...(<any>RouterLink).props,
-};
-</script>
-
 <script lang="ts" setup>
-import { RouterLink, useLink } from 'vue-router';
 import Provider from '@/provider';
+import { menuOptions, routeProps } from './sidebar';
 
 const props = defineProps<{ mode: boolean }>();
 const emit = defineEmits<{
   (e: 'onToggleMode', mode: boolean): void;
 }>();
-
-const Link = useLink(routeProps);
 
 // 全局主题模式
 const mode = Provider.globalThemeMode;
