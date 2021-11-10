@@ -30,6 +30,11 @@ const routes: Array<IRoutes> = [
         component: () => import('@/pages/Calendar.vue'),
       },
       {
+        path: 'news',
+        name: 'News',
+        component: () => import('@/pages/News.vue'),
+      },
+      {
         path: 'customerService',
         name: 'CustomerService',
         component: () => import('@/pages/CustomerService.vue'),

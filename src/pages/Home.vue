@@ -2,7 +2,7 @@
   <Layout @onToggleMode="onToggleMode" :mode="themeSign">
     <template v-slot:title>
       <!-- Home -->
-      <div v-show="isHome">
+      <div v-if="isHome">
         <n-space vertical>
           <div v-for="i in homeData.historyData" :key="uuid()">
             <n-gradient-text :size="24" type="warning">
@@ -20,7 +20,7 @@
         </n-space>
       </div>
       <!-- Other -->
-      <router-view v-show="!isHome" />
+      <router-view v-if="!isHome" />
     </template>
   </Layout>
 </template>
@@ -47,7 +47,7 @@ import { uuid } from '@/utils';
  */
 const { data: _data } = useFetch(getHistoryToday(1)).get(); // 获取历史今天
 const Route = useRoute(); // 路由实列
-const isHome = ref<boolean>(false); // 是否是主页
+const isHome = ref<boolean>(true); // 是否是主页
 // 主页数据
 const homeData = reactive({
   historyData: [] as HitoryTodayType['data'],
@@ -64,7 +64,8 @@ watchPostEffect(() => {
 });
 
 // 监听路由
-watch(Route, ({ name }) => {
+watchPostEffect(() => {
+  const { name } = Route;
   isHome.value = name === 'Home';
 });
 

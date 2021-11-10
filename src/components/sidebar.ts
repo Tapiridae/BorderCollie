@@ -19,6 +19,17 @@ const menuOptions: LayoutMenuOptions[] = [
       h(
         RouterLink,
         {
+          to: '/home/news',
+        },
+        { default: () => '新鲜事儿' }
+      ),
+    key: 'news',
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
           to: '/home/customerService',
         },
         { default: () => '客服' }
