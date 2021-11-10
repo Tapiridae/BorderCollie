@@ -1,9 +1,104 @@
 <template>
-  <div>sisisisi</div>
+  <div>
+    <n-space>
+      <template v-for="i in news.newsTypes" :key="i.typeId">
+        <n-button :type="color" @click="getNews(i.typeId)">{{
+          i.typeName
+        }}</n-button>
+      </template>
+    </n-space>
+    <div class="masonry">
+      <template v-for="i in news.newsList" :key="i.newsId">
+        <n-card :title="i.title" embedded class="item">
+          <template #cover>
+            <img
+              :src="
+                Array.isArray(i.imgList) && i.imgList.length > 0
+                  ? i.imgList[0]
+                  : ''
+              "
+            />
+          </template>
+          <template #footer>
+            <div class="news-bottom">
+              <span>{{ i.source }}</span>
+              <span>{{ i.postTime }}</span>
+            </div>
+          </template>
+          <template #action> 查看详情</template>
+        </n-card>
+      </template>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-console.log(1);
+import type { NewsTypesType, NewsListType } from '@/types';
+
+import useFetch from '@/requests';
+import { getNewsTypes, getDailyNews } from '@/requests/messages';
+import { reactive, onMounted, watchPostEffect, ref } from 'vue';
+import { randomType } from '@/utils';
+
+/**
+ * ------------------------------------------------------------------
+ * --------------------------State-----------------------------------
+ * ------------------------------------------------------------------
+ */
+const fetchNewsTypes = useFetch(getNewsTypes()).get().json(); // 获取新闻类型列表
+const news = reactive({
+  newsTypes: [] as NewsTypesType['data'], // 新闻类型列表
+  newsList: [] as NewsListType['data'],
+});
+const color = ref<string>(''); // 随机颜色
+const typeId = ref<string | number>('');
+const page = ref<number>(1);
+
+// 监听新闻类型数据
+watchPostEffect(() => {
+  const { data } = fetchNewsTypes;
+  if (!data.value) return;
+  const { data: _data } = <NewsTypesType>data.value;
+  news.newsTypes = _data;
+});
+
+// 获取新闻列表
+const getNews: (typeId: number) => void = async (T) => {
+  typeId.value = T;
+  const { execute, data } = useFetch(getDailyNews(T, page.value), {
+    immediate: false,
+  })
+    .get()
+    .json();
+  await execute();
+  const { data: _newsList } = <Pick<NewsListType, 'data'>>data.value;
+  news.newsList = _newsList;
+  console.log(_newsList);
+};
+
+onMounted(() => {
+  color.value = randomType();
+});
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.n-card {
+  max-width: 300px;
+}
+.masonry {
+  width: 100%;
+  margin: 20px 0;
+  columns: 5;
+  column-gap: 30px;
+
+  .item {
+    width: 100%;
+    break-inside: avoid;
+    margin-bottom: 20px;
+  }
+  .news-bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+</style>

@@ -15,8 +15,8 @@ const useFetch = createFetch({
       return { options };
     },
     afterFetch(ctx) {
-      // console.log(ctx, `回调`);
       const {
+        data,
         response: { status },
       } = ctx;
 
