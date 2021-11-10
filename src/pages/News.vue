@@ -8,7 +8,11 @@
       </template>
     </n-space>
     <div class="masonry">
-      <template v-for="i in news.newsList" :key="i.newsId">
+      <template
+        v-for="i in news.newsList"
+        :key="i.newsId"
+        v-show="news.newsList"
+      >
         <n-card :title="i.title" embedded class="item">
           <template #cover>
             <img
@@ -33,12 +37,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { NewsTypesType, NewsListType } from '@/types';
-
 import useFetch from '@/requests';
 import { getNewsTypes, getDailyNews } from '@/requests/messages';
 import { reactive, onMounted, watchPostEffect, ref } from 'vue';
 import { randomType } from '@/utils';
+
+import type { NewsTypesType, NewsListType } from '@/types';
 
 /**
  * ------------------------------------------------------------------
@@ -73,7 +77,6 @@ const getNews: (typeId: number) => void = async (T) => {
   await execute();
   const { data: _newsList } = <Pick<NewsListType, 'data'>>data.value;
   news.newsList = _newsList;
-  console.log(_newsList);
 };
 
 onMounted(() => {
