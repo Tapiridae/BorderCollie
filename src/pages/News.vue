@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 新闻类型 -->
     <n-space>
       <template v-for="i in news.newsTypes" :key="i.typeId">
         <n-button :type="color" @click="getNews(i.typeId)">{{
@@ -7,8 +8,13 @@
         }}</n-button>
       </template>
     </n-space>
+    <!-- 新闻列表 -->
     <div class="masonry">
-      <template v-for="i in news.newsList" :key="i.newsId">
+      <template
+        v-for="i in news.newsList"
+        :key="i.newsId"
+        v-show="news.newsList"
+      >
         <n-card :title="i.title" embedded class="item">
           <template #cover>
             <img
@@ -25,20 +31,33 @@
               <span>{{ i.postTime }}</span>
             </div>
           </template>
-          <template #action> 查看详情</template>
+          <template #action>
+            <div class="preview" @click="getNewsDetail(i.newsId)">查看详情</div>
+          </template>
         </n-card>
       </template>
     </div>
+    <!-- 抽屉 -->
+    <n-drawer v-model:show="drawerEnabled" :width="502" placement="bottom">
+      <n-drawer-content :title="news.details.title">
+        <div></div>
+        {{ news.details }}
+      </n-drawer-content>
+    </n-drawer>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { NewsTypesType, NewsListType } from '@/types';
-
 import useFetch from '@/requests';
-import { getNewsTypes, getDailyNews } from '@/requests/messages';
+import {
+  getNewsTypes,
+  getDailyNews,
+  getDailyNewsDetails,
+} from '@/requests/messages';
 import { reactive, onMounted, watchPostEffect, ref } from 'vue';
 import { randomType } from '@/utils';
+
+import type { NewsTypesType, NewsListType, NewsDetailsType } from '@/types';
 
 /**
  * ------------------------------------------------------------------
@@ -48,11 +67,14 @@ import { randomType } from '@/utils';
 const fetchNewsTypes = useFetch(getNewsTypes()).get().json(); // 获取新闻类型列表
 const news = reactive({
   newsTypes: [] as NewsTypesType['data'], // 新闻类型列表
-  newsList: [] as NewsListType['data'],
+  newsList: [] as NewsListType['data'], // 新闻列表
+  details: [] as NewsDetailsType['data'], // 新闻详情
 });
 const color = ref<string>(''); // 随机颜色
-const typeId = ref<string | number>('');
-const page = ref<number>(1);
+const typeId = ref<string | number>(''); // 新闻类型
+const page = ref<number>(1); // 当前分页
+const newsId = ref<string>(''); // 新闻id
+const drawerEnabled = ref<boolean>(false); // 抽屉状态
 
 // 监听新闻类型数据
 watchPostEffect(() => {
@@ -73,7 +95,20 @@ const getNews: (typeId: number) => void = async (T) => {
   await execute();
   const { data: _newsList } = <Pick<NewsListType, 'data'>>data.value;
   news.newsList = _newsList;
-  console.log(_newsList);
+};
+
+// 获取新闻详情
+const getNewsDetail: (newsId: string) => void = async (N) => {
+  newsId.value = N;
+  const { execute, data } = useFetch(getDailyNewsDetails(N), {
+    immediate: false,
+  })
+    .get()
+    .json();
+  await execute();
+  const { data: _details } = <Pick<NewsDetailsType, 'data'>>data.value;
+  news.details = _details;
+  drawerEnabled.value = true;
 };
 
 onMounted(() => {
@@ -95,6 +130,14 @@ onMounted(() => {
     width: 100%;
     break-inside: avoid;
     margin-bottom: 20px;
+    &:hover {
+      transform: scale(1.01);
+      opacity: 0.8;
+    }
+
+    .preview {
+      cursor: pointer;
+    }
   }
   .news-bottom {
     display: flex;

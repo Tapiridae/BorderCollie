@@ -52,10 +52,24 @@ interface NewsListType extends CommonAPIType {
   }>;
 }
 
+// 新闻详情
+interface NewsDetailsType extends CommonAPIType {
+  data: Array<{
+    content: string;
+    cover: string;
+    docid: string;
+    images: string[];
+    ptime: Date;
+    source: string;
+    title: string;
+  }>;
+}
+
 export type {
   LayoutMenuOptions,
   AcceptMessagesType,
   HitoryTodayType,
   NewsTypesType,
   NewsListType,
+  NewsDetailsType,
 };
