@@ -47,7 +47,7 @@ import { uuid } from '@/utils';
  */
 const { data: _data } = useFetch(getHistoryToday(1)).get(); // 获取历史今天
 const Route = useRoute(); // 路由实列
-const isHome = ref<boolean>(true); // 是否是主页
+const isHome = ref<boolean>(false); // 是否是主页
 // 主页数据
 const homeData = reactive({
   historyData: [] as HitoryTodayType['data'],
@@ -61,7 +61,6 @@ watchPostEffect(() => {
   );
   data.forEach((_) => (_['key'] = uuid()));
   homeData.historyData = data;
-  console.log(data);
 });
 
 // 监听路由
