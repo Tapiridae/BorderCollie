@@ -43,6 +43,7 @@
       :width="502"
       placement="right"
       :mask-closable="false"
+      v-if="news.details"
     >
       <n-drawer-content
         :title="news.details.title"
@@ -60,7 +61,7 @@
             <n-tag :type="color">{{ news.details.ptime }}</n-tag>
           </n-space>
           <!-- 内容 -->
-          <div v-html="news.details.content"></div>
+          <div v-html="news.details?.content"></div>
           <n-image-group>
             <n-space>
               <n-image
