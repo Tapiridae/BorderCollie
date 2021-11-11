@@ -52,17 +52,23 @@ interface NewsListType extends CommonAPIType {
   }>;
 }
 
+interface NewsDetailImagesType {
+  imgSrc: string;
+  position: string;
+  size: string;
+}
+
 // 新闻详情
 interface NewsDetailsType extends CommonAPIType {
-  data: Array<{
+  data: {
     content: string;
     cover: string;
     docid: string;
-    images: string[];
+    images: NewsDetailImagesType[];
     ptime: Date;
     source: string;
     title: string;
-  }>;
+  };
 }
 
 export type {

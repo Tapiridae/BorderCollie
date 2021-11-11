@@ -38,10 +38,40 @@
       </template>
     </div>
     <!-- 抽屉 -->
-    <n-drawer v-model:show="drawerEnabled" :width="502" placement="bottom">
-      <n-drawer-content :title="news.details.title">
-        <div></div>
-        {{ news.details }}
+    <n-drawer
+      v-model:show="drawerEnabled"
+      :width="502"
+      placement="right"
+      :mask-closable="false"
+      v-if="news.details"
+    >
+      <n-drawer-content
+        :title="news.details.title"
+        style="overflow: hidden"
+        closable
+      >
+        <n-scrollbar style="max-height: 100vh">
+          <!-- 封面 -->
+          <n-space>
+            <n-image width="500" :src="news.details.cover" />
+          </n-space>
+          <!-- 报社 日期 -->
+          <n-space justify="space-between">
+            <n-tag :type="color">{{ news.details.source }}</n-tag>
+            <n-tag :type="color">{{ news.details.ptime }}</n-tag>
+          </n-space>
+          <!-- 内容 -->
+          <div v-html="news.details?.content"></div>
+          <n-image-group>
+            <n-space>
+              <n-image
+                v-for="i in news.details.images"
+                width="100"
+                :src="i?.imgSrc"
+              />
+            </n-space>
+          </n-image-group>
+        </n-scrollbar>
       </n-drawer-content>
     </n-drawer>
   </div>
@@ -68,7 +98,7 @@ const fetchNewsTypes = useFetch(getNewsTypes()).get().json(); // 获取新闻类
 const news = reactive({
   newsTypes: [] as NewsTypesType['data'], // 新闻类型列表
   newsList: [] as NewsListType['data'], // 新闻列表
-  details: [] as NewsDetailsType['data'], // 新闻详情
+  details: {} as NewsDetailsType['data'], // 新闻详情
 });
 const color = ref<string>(''); // 随机颜色
 const typeId = ref<string | number>(''); // 新闻类型
