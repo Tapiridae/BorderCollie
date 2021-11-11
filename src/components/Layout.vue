@@ -1,7 +1,7 @@
 <template>
   <n-layout class="layout-container">
     <n-layout-header class="layout-header" bordered>
-      <n-h5>Header</n-h5>
+      <n-h5>Header Block</n-h5>
       <div class="switch-mode">
         <span v-show="!mode" @click="handleToggleDarkMode">Dark</span>
         <span v-show="mode" @click="handleToggleLightMode">Light</span>
