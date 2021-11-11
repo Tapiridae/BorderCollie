@@ -1,5 +1,6 @@
 <template>
   <div>
+    ```
     <!-- 新闻类型 -->
     <n-space>
       <template v-for="i in news.newsTypes" :key="i.typeId">
