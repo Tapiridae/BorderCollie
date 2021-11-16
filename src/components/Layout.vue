@@ -3,8 +3,12 @@
     <n-layout-header class="layout-header" bordered>
       <n-h5>Header</n-h5>
       <div class="switch-mode">
-        <span v-show="!mode" @click="handleToggleDarkMode">Dark</span>
-        <span v-show="mode" @click="handleToggleLightMode">Light</span>
+        <span v-show="!mode" @click="handleToggleDarkMode"
+          ><icon><DarkModeRound /></icon
+        ></span>
+        <span v-show="mode" @click="handleToggleLightMode"
+          ><icon><LightModeOutlined /></icon
+        ></span>
       </div>
     </n-layout-header>
     <n-layout class="layout-side" position="absolute" has-sider>
@@ -38,6 +42,9 @@
 <script lang="ts" setup>
 import Provider from '@/provider';
 import { menuOptions, routeProps } from './sidebar';
+import LightModeOutlined from '@vicons/material/LightModeOutlined';
+import DarkModeRound from '@vicons/material/DarkModeRound';
+import { Icon } from '@vicons/utils';
 
 const props = defineProps<{ mode: boolean }>();
 const emit = defineEmits<{
