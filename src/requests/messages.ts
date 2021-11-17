@@ -8,18 +8,34 @@ const wrapperAPI: (url: string) => string = (U) => {
 };
 
 /**
- * @description 历史的今天
+ * *********************************************
+ * *********************************************
+ * *************** History *********************
+ * *********************************************
+ * *********************************************
+ */
+
+/**
+ * 历史的今天
  */
 export const getHistoryToday: (type?: number) => string = (T = 0) =>
   wrapperAPI(`history/today?type=${T}`);
 
 /**
- * @description 每日最新新闻 所有新闻类型
+ * *********************************************
+ * *********************************************
+ * *************** News ************************
+ * *********************************************
+ * *********************************************
+ */
+
+/**
+ * 每日最新新闻 所有新闻类型
  */
 export const getNewsTypes: () => string = () => wrapperAPI('news/types');
 
 /**
- * @description 每日最新新闻 根据新闻类型获取新闻列表
+ * 每日最新新闻 根据新闻类型获取新闻列表
  */
 export const getDailyNews: (
   typeId: string | number,
@@ -27,7 +43,24 @@ export const getDailyNews: (
 ) => string = (T, P) => wrapperAPI(`news/list?typeId=${T}&page=${P}`);
 
 /**
- * @description 每日最新新闻 获取新闻详情
+ * 每日最新新闻 获取新闻详情
  */
 export const getDailyNewsDetails: (newsId: string) => string = (N) =>
   wrapperAPI(`news/details?newsId=${N}`);
+
+/**
+ * *********************************************
+ * *********************************************
+ * *************** Holiday *********************
+ * *********************************************
+ * *********************************************
+ */
+
+/**
+ * 获取指定月份节假日
+ */
+export const getMonthHoliday: (
+  date: string, // yyyyMM
+  ignoreHoliday?: boolean // false
+) => string = (D, I = false) =>
+  wrapperAPI(`holiday/list/month/${D}?ignoreHoliday=${I}`);

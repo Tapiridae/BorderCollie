@@ -1,5 +1,5 @@
 import { createFetch } from '@vueuse/core';
-import { WebAPI } from '../constants';
+import { WebAPI } from '@/constants';
 
 const useFetch = createFetch({
   baseUrl: `${WebAPI.DOMAIN}`,
