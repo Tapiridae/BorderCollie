@@ -24,7 +24,7 @@ export const uuid: () => string = () => {
  * @description 获取随机按钮主题
  * @returns {String}
  */
-export const randomType = () => {
+export const randomType: () => string = () => {
   let theme = ['primary', 'info', 'default', 'warning', 'error'];
   return theme[parseInt(String(Math.random() * 5))];
 };
