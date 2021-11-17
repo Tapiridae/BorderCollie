@@ -1,15 +1,37 @@
 <template>
   <n-layout class="layout-container">
     <n-layout-header class="layout-header" bordered>
-      <n-h5>Header</n-h5>
-      <div class="switch-mode">
-        <span v-show="!mode" @click="handleToggleDarkMode"
-          ><icon><DarkModeRound /></icon
-        ></span>
-        <span v-show="mode" @click="handleToggleLightMode"
-          ><icon><LightModeOutlined /></icon
-        ></span>
-      </div>
+      <n-page-header subtitle="weishaodaren is so cool">
+        <template #avatar>
+          <n-avatar
+            src="https://avatars.githubusercontent.com/u/45391716?v=4"
+          />
+        </template>
+        <template #extra>
+          <n-space>
+            <div class="switch-mode">
+              <icon div v-if="!mode" @click="handleToggleDarkMode"
+                ><DarkModeRound
+              /></icon>
+              <icon v-else @click="handleToggleLightMode"
+                ><LightModeOutlined
+              /></icon>
+            </div>
+            <n-dropdown
+              :options="HeaderDropDownOptions"
+              placement="bottom-start"
+              :show-arrow="true"
+              @select="(key: HeaderDropDownOptionsType['key']) => onSelect(key)"
+            >
+              <n-button :bordered="false" style="padding: 0 4px">
+                <n-avatar round>{{
+                  userName.slice(userName.length - 2)
+                }}</n-avatar>
+              </n-button>
+            </n-dropdown>
+          </n-space>
+        </template>
+      </n-page-header>
     </n-layout-header>
     <n-layout class="layout-side" position="absolute" has-sider>
       <n-layout-sider
@@ -40,45 +62,61 @@
 </template>
 
 <script lang="ts" setup>
+import type { HeaderDropDownOptionsType } from '@/types';
+import { useMessage } from 'naive-ui';
 import Provider from '@/provider';
-import { menuOptions, routeProps } from './sidebar';
+import { menuOptions } from './sidebar';
 import LightModeOutlined from '@vicons/material/LightModeOutlined';
 import DarkModeRound from '@vicons/material/DarkModeRound';
 import { Icon } from '@vicons/utils';
+import { HeaderDropDownOptions } from '@/constants';
 
 const props = defineProps<{ mode: boolean }>();
 const emit = defineEmits<{
   (e: 'onToggleMode', mode: boolean): void;
 }>();
 
+const message = useMessage();
 // 全局主题模式
 const mode = Provider.globalThemeMode;
+// 用户名
+const userName = Provider.globalUserName;
 
 // 深色模式
-const handleToggleDarkMode = () => emit('onToggleMode', true);
+const handleToggleDarkMode: () => void = () => emit('onToggleMode', true);
 
-// 明亮模式
-const handleToggleLightMode = () => emit('onToggleMode', false);
+// 浅色模式
+const handleToggleLightMode: () => void = () => emit('onToggleMode', false);
+
+// 菜单操作
+const onSelect: (key: HeaderDropDownOptionsType['key']) => void = (K) => {
+  switch (K) {
+    // 退出登录
+    case 'SignOut': {
+      Provider.globalOnlineStatus.value = false;
+      break;
+    }
+    case 'Hurry': {
+      message.info('催你个头 !');
+      break;
+    }
+    default:
+      break;
+  }
+};
 </script>
 
 <style lang="less" scoped>
-a {
-  text-decoration: none;
-}
-
 .layout-container {
   height: 100vh;
 
   .layout-header {
     height: 64px;
-    padding: 24px;
+    line-height: 64px;
+    padding: 12px;
 
     .switch-mode {
-      position: absolute;
-      top: 0;
-      right: 20px;
-      font-size: 24px;
-      line-height: 64px;
+      font-size: 30px;
 
       :hover {
         cursor: pointer;
