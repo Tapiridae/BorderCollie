@@ -1,0 +1,1 @@
+const t=()=>{let e=URL.createObjectURL(new Blob),r=e.toString();return URL.revokeObjectURL(e),r.substr(r.lastIndexOf("/")+1)},n=()=>["primary","info","default","warning","error"][parseInt(String(Math.random()*5))];export{n as r,t as u};
