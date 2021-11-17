@@ -66,10 +66,31 @@ interface NewsDetailsType extends CommonAPIType {
   };
 }
 
+// 节假日，万年历
+interface Holiday extends CommonAPIType {
+  data: Array<{
+    avoid: string;
+    chineseZodiac: string;
+    constellation: string;
+    date: string;
+    dayOfYear: number;
+    indexWorkDayOfMonth: number;
+    lunarCalendar: string;
+    solarTerms: string;
+    suit: string;
+    type: number;
+    typeDes: string;
+    weekDay: number;
+    weekOfYear: number;
+    yearTips: string;
+  }>;
+}
+
 export type {
   AcceptMessagesType,
   HitoryTodayType,
   NewsTypesType,
   NewsListType,
   NewsDetailsType,
+  Holiday,
 };
