@@ -87,7 +87,7 @@ const getValidState: (
   month: string,
   date: string
 ) => Holiday['data'][0] = (Y, M, D) =>
-  holiday.data[
+  holiday.data?.[
     holiday.data?.findIndex(
       ({ date }) =>
         date === `${Y}-${M}-${String(D).length > 1 ? D : '0' + String(D)}`
@@ -96,8 +96,8 @@ const getValidState: (
 
 // 更新日期
 const handleUpdateValue: HandleUpdateValue = (_, { year, month, date }) => {
-  const { dayOfYear } = getValidState(year, month, date);
-  dayOfYear && message.info(`这是今年的第${dayOfYear}天`);
+  const pastDay = getValidState?.(year, month, date)?.dayOfYear;
+  pastDay && message.info(`这是今年的第${pastDay}天`);
 };
 
 // 是否禁用
