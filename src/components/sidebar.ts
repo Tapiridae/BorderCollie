@@ -25,17 +25,6 @@ const menuOptions: LayoutMenuOptions[] = [
       ),
     key: 'news',
   },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: '/home/customerService',
-        },
-        { default: () => '客服' }
-      ),
-    key: 'customerService',
-  },
 ];
 
 const routeProps = {

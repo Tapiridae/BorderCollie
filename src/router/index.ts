@@ -34,11 +34,6 @@ const routes: Array<IRoutes> = [
         name: 'News',
         component: () => import('@/pages/News.vue'),
       },
-      {
-        path: 'customerService',
-        name: 'CustomerService',
-        component: () => import('@/pages/CustomerService.vue'),
-      },
     ],
     component: () => import('@/pages/Home.vue'),
   },
