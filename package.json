@@ -14,9 +14,9 @@
   "dependencies": {
     "@vueuse/core": "^6.7.4",
     "less": "^4.1.1",
+    "pinia": "^2.0.8",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.11",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.0.11"
   },
   "devDependencies": {
     "@vicons/material": "^0.11.0",
