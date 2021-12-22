@@ -25,6 +25,17 @@ const menuOptions: LayoutMenuOptions[] = [
       ),
     key: 'news',
   },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: '/home/jokes',
+        },
+        { default: () => '好玩的事' }
+      ),
+    key: 'jokes',
+  },
 ];
 
 const routeProps = {

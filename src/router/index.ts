@@ -34,6 +34,11 @@ const routes: Array<IRoutes> = [
         name: 'News',
         component: () => import('@/pages/News.vue'),
       },
+      {
+        path: 'jokes',
+        name: 'Jokes',
+        component: () => import('@/pages/Jokes.vue'),
+      },
     ],
     component: () => import('@/pages/Home.vue'),
   },

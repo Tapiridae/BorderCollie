@@ -64,3 +64,17 @@ export const getMonthHoliday: (
   ignoreHoliday?: boolean // false
 ) => string = (D, I = false) =>
   wrapperAPI(`holiday/list/month/${D}?ignoreHoliday=${I}`);
+
+/**
+ * *********************************************
+ * *********************************************
+ * *************** Jokes *********************
+ * *********************************************
+ * *********************************************
+ */
+
+/**
+ * 随机获取笑话段子列表
+ */
+export const getRandomJokes: () => string = () =>
+  wrapperAPI('jokes/list/random');
